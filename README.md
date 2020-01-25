@@ -1,84 +1,41 @@
-# DemoCo
+# Publishing Angular Libraries with Nx
 
-This project was generated using [Nx](https://nx.dev).
+## Create NPM Organization
 
-<p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
+You'll probably end up creating multiple libraries after you create your first one, so it's a good idea namespace your set of libraries under an npm organization (e.g. @angular/core, @angular/router, etc...).
 
-🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
+- Decide on a name for your namespace/organization. It's a good idea to make this short. It can be something non-descriptive (like Akita), or something descriptive (ngRx) which describes the types of libraries it contains.
 
-## Quick Start & Documentation
+- Create an NPM Organization [here](https://www.npmjs.com/org/create).
 
-[Nx Documentation](https://nx.dev/angular)
+  This will align with your Angular namespace name allowing you to "scope" your libraries to one namespace.
 
-[10-minute video showing all Nx features](https://nx.dev/angular/getting-started/what-is-nx)
 
-[Interactive Tutorial](https://nx.dev/angular/tutorial/01-create-application)
+- Install Angular CLI
 
-## Adding capabilities to your workspace
+  `npm install -g @angular/cli`
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+- Generate Nx Workspace, using the npm organization from above as the namespace
 
-Below are some plugins which you can add to your workspace:
+  `npx create-nx-workspace <your-namespace-name>`
+  - Pick the type of project (angular or angular-jest)
+  - Pick style extension
+  - Name default app (`<your-namespace-name>-docs` is usually a good bet)
 
-- [Angular](https://angular.io)
-  - `ng add @nrwl/angular`
-- [React](https://reactjs.org)
-  - `ng add @nrwl/react`
-- Web (no framework frontends)
-  - `ng add @nrwl/web`
-- [Nest](https://nestjs.com)
-  - `ng add @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `ng add @nrwl/express`
-- [Node](https://nodejs.org)
-  - `ng add @nrwl/node`
+- Generate Library
+  Each library should be focused on one feature (e.g. form-fields, state-management) and named appropriately.
 
-## Generate an application
+  `ng generate @nrwl/angular:lib <your-library-name> --publishable`
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
+  Don't forget the `--publishable` a the end, it tell nx to add a package.json to the library enabling npm publishing.
 
-> You can use any of the plugins above to generate applications as well.
+- Generate First Library Component
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+  `ng generate component --project=<your-library-name>`
 
-## Generate a library
+- Make it do something
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
-> You can also use any of the plugins above to generate libraries as well.
 
-Libraries are sharable across libraries and applications. They can be imported from `@demo-co/mylib`.
 
-## Development server
-
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng g component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.

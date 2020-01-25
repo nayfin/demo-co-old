@@ -123,6 +123,44 @@
           }
         }
       }
+    },
+    "form-fields": {
+      "projectType": "library",
+      "root": "libs/form-fields",
+      "sourceRoot": "libs/form-fields/src",
+      "prefix": "dco",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/form-fields/tsconfig.lib.json",
+            "project": "libs/form-fields/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/form-fields/tsconfig.lib.json",
+              "libs/form-fields/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/form-fields/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/form-fields/jest.config.js",
+            "tsConfig": "libs/form-fields/tsconfig.spec.json",
+            "setupFile": "libs/form-fields/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
