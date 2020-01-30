@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ContentChild, AfterContentInit, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'dco-input',
@@ -9,7 +9,5 @@ export class InputComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }
