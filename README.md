@@ -2,7 +2,7 @@
 
 <!-- ![Nrwl Extensions](https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ.) -->
 <a href="https://nx.dev/angular">
-<img style="max-width: 300px" src="https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ."/>
+<img width="300px" src="https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ."/>
 </a>
 
 ## What is Nx?
