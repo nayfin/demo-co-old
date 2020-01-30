@@ -1,7 +1,12 @@
 # Publishing Angular Libraries with Nx
 
+<!-- ![Nrwl Extensions](https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ.) -->
+<a href="https://nx.dev/angular">
+<img style="max-width: 300px" src="https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ."/>
+</a>
+
 ## What is Nx?
-Nx is a fantastic open-source tool for building monorepos. Simplifies generation of Angular, React, and Nest apps and libraries. Find docs [here](https://nx.dev/angular).
+Nx is a fantastic open-source tool for building monorepos built by the Nrwl team. Simplifies generation of Angular, React, and Nest apps and libraries. Find docs [here](https://nx.dev/angular).
 
 ## What is an NPM Organization?
 We can create an organization through npm and group all our libraries under this organization (e.g. @angular, @ngrx, @nrwl). This indicates to the consuming developer that the same organization created all your great libraries.
@@ -23,9 +28,17 @@ Whenever you are about to build something ask: “Will this be useful outside of
 
 Built in an Nx workspace deployed as a package on NPM.
 
-## How?
+## How do we do all this?
+![thinking steven](https://media.giphy.com/media/2xF8ihOYNJCG0iAXNU/giphy.gif)
 
 ### 1. Create NPM Organization
+- Register for an NPM account if you don't already have one [here](https://www.npmjs.com/signup)
+
+- Sign in through command line
+
+  `npm login`
+
+  Then follow prompts
 
 - Decide on a name for your namespace/organization. It's a good idea to make this short. It can be something non-descriptive (like @datorama), or something descriptive (ngRx) which describes the types of libraries it contains.
 
@@ -69,10 +82,20 @@ Built in an Nx workspace deployed as a package on NPM.
 
   `git commit -m 'Some changes on the master branch :)'`
 - set initial version in package.json
+- build library
+
+  `ng build <library-name>`
 - publish it!
 
   `cd dist/libs/<library-name> && npm pack && npm publish --access public && cd ../../../`
 
+## 6. Build Release Script
+  You published the library, awesome! But running all those commands manually was kind of gross. Check out `release.sh` in the scripts folder. This
+
+
+
+## Notes
+- Don't enable Ivy in libraries yet. View Engine (pre-Ivy) libraries are forwards compatible with Ivy apps but the reverse isn't true. Recommendation is to wait until Angular 10 before publishing Ivy libraries. Find lot's more [here](https://indepth.dev/the-angular-ivy-guide-for-library-authors/).
 
 ## Resources
 
