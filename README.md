@@ -65,6 +65,13 @@ Built in an Nx workspace deployed as a package on NPM.
 
 ### 5. Publish Library Once
 
+- commit changes
+
+  `git commit -m 'Some changes on the master branch :)'`
+- set initial version in package.json
+- publish it!
+
+  `cd dist/libs/<library-name> && npm pack && npm publish --access public && cd ../../../`
 
 
 ## Resources
