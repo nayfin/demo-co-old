@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-ng-packagr": "~0.803.14",
-    "@angular/cli": "8.3.14",
+    "@angular/cli": "8.3.24",
     "@nrwl/workspace": "8.11.0",
     "@types/node": "~8.9.4",
     "dotenv": "6.2.0",
