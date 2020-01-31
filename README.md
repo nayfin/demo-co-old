@@ -1,20 +1,24 @@
 # Publishing Angular Libraries with Nx
 
-<!-- ![Nrwl Extensions](https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ.) -->
+How to build a group of publishable libraries all all namespaced under an NPM organization.
 
 ## What is Nx?
 <a href="https://nx.dev/angular">
-<img width="200px" src="https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ."/>
+  <img width="200px" src="https://miro.medium.com/max/1281/0*44TVT2Pa3jrEkaXJ."/>
 </a>
 
 Nx is a fantastic open-source tool for building monorepos built by the Nrwl team. Simplifies generation of Angular, React, and Nest apps and libraries. Find docs [here](https://nx.dev/angular).
 
 ## What is an NPM Organization?
-![NPM Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/330px-Npm-logo.svg.png | width=200)
+<a href="https://npmjs.com">
+  <img width="200px" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/330px-Npm-logo.svg.png"/>
+</a>
 
 We can create an organization through npm and group all our libraries under this organization (e.g. @angular, @ngrx, @nrwl). This indicates to the consuming developer that the same organization created all your great libraries.
 
 ## Why create libraries?
+![conchords](https://media.giphy.com/media/1iTpx5PpzRugcrZK/giphy.gif)
+
 Publishing libraries like this allows you to:
   - easily reuse features you’ve built for other apps
   - share your code with anyone interested
