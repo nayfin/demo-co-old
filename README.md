@@ -96,8 +96,10 @@ Built in an Nx workspace deployed as a package on NPM.
 
   `cd dist/libs/<library-name> && npm pack && npm publish --access public && cd ../../../`
 
+### You published a library!!
+![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
 ## 6. Build Release Script
-  You published the library, awesome! But running all those commands manually was kind of gross. Check out `release.sh` in the scripts folder. This
+  You published the library, awesome! But running all those commands manually was kind of gross. Check out `release.sh` in the scripts folder. It's
 
 
 
@@ -107,6 +109,8 @@ Built in an Nx workspace deployed as a package on NPM.
 ## Resources
 
 Alfredo Perez has a great series on publishing libraries with Nx. He even goes into implementing a CI/CD pipeline with Travis [here](https://medium.com/@alfredo.perez.q/publish-angular-library-documentation-created-with-nx-using-travisci-and-github-pages-27854598239c).
+
+If you'd really dive deep, [here](https://blog.angular.io/how-we-use-angular-at-the-gdf-cd17807a9bd2) is an article from the Angular Blog on building an `update` schematic to automatically fix breaking changes when you make them.
 
 
 
