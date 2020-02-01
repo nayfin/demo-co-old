@@ -41,7 +41,7 @@
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
     "@nrwl/angular": "8.11.0",
-    "@tft/core": "^8.0.3",
+    "@tft/core": "^8.1.0",
     "@tft/ui-imports": "^8.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.4",

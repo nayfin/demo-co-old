@@ -9,19 +9,20 @@ import { SidenavSection } from '@tft/core';
 export class AppComponent {
   title = 'demo-co-docs';
 
-  appNavTree: SidenavSection[] = [
+  linksToExamples: SidenavSection[] = [
     {
-      title: 'CRISPR Forms',
-      subtitle: 'DNA driven forms',
-      description: `Overview of CRISPR Forms`,
+      title: 'Form Fields',
+      subtitle: '',
+      description: ``,
       links: [
         {
-          title: 'Overview',
-          path: 'crispr-forms-demo/overview',
+          title: 'Input Field',
+          path: 'fields/input',
         }
       ],
     }
-  ]
+  ];
+
   onLinkSelected(event) {
     console.log(event);
   }
