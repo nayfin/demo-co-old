@@ -1,54 +1,52 @@
+
 #!/bin/bash
 # exit when error
 set -e
-# get the first argument as the package name and set it to a variable
-package=$1
 
-# TODO: @Kyle, learn how to make this not terrible and ugly
-# If this isn't a valid package, print error and exit
-if [ "$package" != "form-fields" ]
-then
-  echo "Not a valid package to release, try 'interact', 'crispr-forms', or 'form-validation-handler'"
-  exit 1
-fi
-# check we are on master, exit if not
+# check that we are on master
 branch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$branch" != "master" ]
-then
-  echo "Not on master branch, exiting"
-  exit 1
+  then
+    echo "Not on master branch, exiting"
+    exit 1
 fi
+
+# THIS LIST MUST BE UPDATEd WHEN NEW PUBLISHABLE LIBS ARE ADDED
+# TODO: There's probably a fancy way to automate this
+packages=(form-fields)
+# prompt user to ask what package we are releasing
+PS3='What package are we releaseing? (input number)'
+select package in "${packages[@]}"
+# We only need this prompt to set the $package variable, but bash requires the do, break, done
+do
+  break
+done
+
 # get current version of package being released
 actual_version=$(grep version "libs/$package/package.json")
-# print it to screen for user
-echo " ${actual_version}"
+echo "Current Version: ${actual_version}"
 
 # holds variable update types to check against user input
-update_options=(major minor patch)
-# ask user how they want to increment version
-echo "What type of update is this?"
-echo "options: ${update_options[*]}"
-# set update_type to user's response
-read update_type
-# TODO: properly check against update_options array instead of limping through this if statement
-if [ "$update_type" != "patch" ] && [ "$update_type" != "minor" ] && [ "$update_type" != "major" ]
-then
-  echo "Not a valid semantic update, try 'patch', 'minor', or 'major'"
-  exit 1
-fi
-
-# go into the library, bump the version according to update type then return to root
-cd "libs/$package" && npm version "${update_type}" && cd ../../
-#  build the library and prepare to publish
+update_options=(patch minor major)
+PS3='What type of update is this? (input number)'
+select update_type in "${update_options[@]}"
+do
+  # go into the library, bump the version according to update type then get out
+  cd "libs/$package" && npm version "${update_type}" && cd ../../
+  break
+done
+# build the library and prepare to publish
 ng build $package
 # package the build code in dist and publish it then go back to root
-# TODO: is `npm pack` still needed??
 cd "dist/libs/$package" && npm pack && npm publish --access public && cd ../../../
 
 # get the new version from the library's package.json
 release_version=$(grep version "libs/$package/package.json")
 # stage, commit and push all changes
-git add . && git commit -m "release: $release_version" && git push
-
-# UNCOMMENT BELOW IF YOU SET UP DOCUMENTATION SYSTEM
+git add . && git commit -m "$package release: $release_version" && git push
+# UNCOMMENT AFTER IMPLEMENTING DOCUMENTATION SCRIPTS
 # npm run release:documentation
+
+
+
+
