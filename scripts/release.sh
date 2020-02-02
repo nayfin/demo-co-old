@@ -44,8 +44,7 @@ cd "dist/libs/$package" && npm pack && npm publish --access public && cd ../../.
 release_version=$(grep version "libs/$package/package.json")
 # stage, commit and push all changes
 git add . && git commit -m "$package release: $release_version" && git push
-# UNCOMMENT AFTER IMPLEMENTING DOCUMENTATION SCRIPTS
-# npm run release:documentation
+
 
 
 

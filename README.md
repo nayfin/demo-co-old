@@ -1,6 +1,6 @@
 # Publishing Angular Libraries with Nx
-
 How to build a group of publishable libraries all all namespaced under an NPM organization.
+## https://github.com/nayfin/demo-co
 
 ## What is Nx?
 <a href="https://nx.dev/angular">
@@ -29,11 +29,12 @@ Publishing libraries like this allows you to:
 Libraries should be well organized and offer specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies. Using Nx makes library publishing and deploying a trivial task and groups all libraries under a shared namespace.
 
 ## When should I create a publishable library?
-Whenever you are about to build something ask: “Will this be useful outside of the implementation I’m building it for?”. Then ask: “Will making it open-source create any security risks for me or those using it?" If it’s useful and safe, build it as a library
+
+Whenever you want access to the code you're writing outside the context you're writing it in (i.e. CLI project or Nx workspace).
 
 ## Where?
 
-Built in an Nx workspace deployed as a package on NPM.
+For our purposes, we are deploying to NPM as a public package, but you can easily follow similar steps to deploy to other public or private registries. Consult their docs for information on setup and publishing.
 
 ## How do we do all this?
 ![thinking steven](https://media.giphy.com/media/2xF8ihOYNJCG0iAXNU/giphy.gif)
@@ -47,12 +48,9 @@ Built in an Nx workspace deployed as a package on NPM.
 
   Then follow prompts
 
-- Decide on a name for your namespace/organization. It's a good idea to make this short. It can be something non-descriptive (like @datorama), or something descriptive (ngRx) which describes the types of libraries it contains.
+- Decide on a name for your workspace/organization. It's a good idea to make this short. It can be something non-descriptive (@mango) if you want to have disparate libraries, or something descriptive (@ngstate) if you want to have a group of related libraries.
 
-- Create an NPM Organization [here](https://www.npmjs.com/org/create).
-
-  This will align with your Angular namespace name allowing you to "scope" your libraries to one namespace.
-
+- Create an NPM Organization [here](https://www.npmjs.com/org/create). This will align with your Nx workspace name name allowing you to "scope" your libraries to one namespace. Do this before creating workspace to ensure that the organization name you want is available
 
 ### 2. Install Dependencies
 
@@ -66,22 +64,21 @@ Built in an Nx workspace deployed as a package on NPM.
 
   Follow prompts
   - Pick the type of project (angular or angular-jest)
-  - Pick style extension
-  - Name default app (`<your-namespace-name>-docs` is usually a good bet)
+  - Pick style extension (scss is great!)
+  - Name default app (`documentation` is usually a good bet)
 
 ### 4. Create Library
   Each library should be focused on one feature (e.g. form-fields, state-management) and named appropriately.
 
   `ng generate @nrwl/angular:lib <your-library-name> --publishable`
 
-  Don't forget the `--publishable` at the end, it tell nx to add a package.json to the library enabling npm publishing.
+  Don't forget the `--publishable` at the end! It tells nx to do all the extra bits to make publishing easy.
 
 - Generate First Library Component
 
   `ng generate component --project=<your-library-name>`
 
-- Make it do something
-
+- Make it do something!
 
 ### 5. Publish Library Once
 
@@ -100,13 +97,13 @@ Built in an Nx workspace deployed as a package on NPM.
 ![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
 
 ### Notes:
-  - Update library's `README.md` file, this will be displayed in on it's npm page. It should help consuming users get started using your package.
+  - Update your library's `README.md` file, this will be displayed in on it's npm page. It should help consuming users get started using your package. [Here's](https://medium.com/hackernoon/a-crash-course-on-writing-a-better-readme-d796d1f6b352) a good article on Medium to get you started
   - If your library consumes any packages (e.g. @angular/material, @angular/forms), be sure to add those packages to the `peerDependencies` in its `package.json` file.
-  -
+
 ## 6. Build Release Script
   You published the library, awesome! But running all those commands manually was kind of gross.
 
-  You can check out `release.sh` in the `scripts` folder. It's a good place to start, and it does the following:
+  Wouldn't it be great if we could run a script that would:
   - prompts user to input which package is being released
   - checks that we're on the master branch
   - prompts user to input version bump type (patch, minor, or major)
@@ -114,7 +111,16 @@ Built in an Nx workspace deployed as a package on NPM.
   - commits package.json changes as release commit
   - uncomment last line to run documentation scripts after adding them to project
 
-  Our bash script is aliased under our `scripts` field as in workspace `package.json`.
+  Take a look at `release.sh` in the `scripts` folder, it is a release script to get you going. There are tons of other processes that could be added here (running tests), but it's a good start.
+
+  You can also use package scripts to alias the bash script in the main workspace `package.json` file.
+
+  ```json
+    "scripts": {
+      "release": "bash ./scripts/release.sh",
+      ...
+    }
+  ```
 
   There are a lot of ways to do this (npm script chaining, bash, nps). Find a way that works for you, but try to avoid a long manual process. It will be cumbersome and lead to mistakes.
 
@@ -126,22 +132,41 @@ Built in an Nx workspace deployed as a package on NPM.
 
   StackBlitz can serve any Angular CLI generated project that is on a public github repo, pretty easily. Unfortunately, our documentation app was generated by Nx and StackBlitz can't serve it.
 
-  Steps
-  - generate a Angular CLI project, named the same as your documentation app, in a directory next to your nx workspace
+  ### Steps
+  - Organize the development testbed. I recommend each library as a lazy-loaded module with each feature as a routed component under that module. This will give you a place to test each feature, and will translate well as an example when it gets turned into docs.
+  - Generate a Angular CLI project, named the same as your documentation app, in a directory next to your nx workspace
 
     `ng new <your-documentation-app-name>`
 
-  - copy app from Nx workspace over to CLI project
+  - Copy app from Nx workspace over to CLI project. From root of Nx workspace run:
 
+    `cp -rf ./apps/<docs-app-name>/src/app ./../<docs-app-name>/src`
+
+  #### DOCUMENT THE FOLLOWINg STEPS IN README.
+  This will probably be your first time using your package outside the context of the Nx workspace, and is a good opportunity to see what any consuming user will have to go through to use your library. Make sure you carefully outline what it takes to get started with your library. If you have trouble getting it setup, imagine how hard it will be for anyone else to get started.
+
+  - Add your package as well as any `peerDependencies` to the `package.json` of the CLI generated app.
+
+  - Perform any other required setup (e.g. if you need Angular Material run `ng add @angular/material`).
+  - Run documentation project
+    `ng serve`
+  - Setup repo on github, commit and push changes to it.
+  - View it on StackBlitz
+    `https://stackblitz.com/github/<your-github-username>/<your-project-name`
+  - Add above link to README.md file, now users can see exactly how to implement each feature of your library.
 
 ## Notes
 - Don't enable Ivy in libraries yet. View Engine (pre-Ivy) libraries are forwards compatible with Ivy apps but the reverse isn't true. Recommendation is to wait until Angular 10 before publishing Ivy libraries. Find lot's more [here](https://indepth.dev/the-angular-ivy-guide-for-library-authors/).
 
 ## Resources
 
-Alfredo Perez has a great series on publishing libraries with Nx. He even goes into implementing a CI/CD pipeline with Travis [here](https://medium.com/@alfredo.perez.q/publish-angular-library-documentation-created-with-nx-using-travisci-and-github-pages-27854598239c).
+- Alfredo Perez has a great series on publishing libraries with Nx. He even goes into implementing a CI/CD pipeline with Travis [here](https://medium.com/@alfredo.perez.q/publish-angular-library-documentation-created-with-nx-using-travisci-and-github-pages-27854598239c).
 
-If you'd really dive deep, [here](https://blog.angular.io/how-we-use-angular-at-the-gdf-cd17807a9bd2) is an article from the Angular Blog on building an `update` schematic to automatically fix breaking changes when you make them.
+- If you'd like some help with your README, [here](https://medium.com/hackernoon/a-crash-course-on-writing-a-better-readme-d796d1f6b352) is a good article on Medium by Adnan Rahić. Checkout [shields.io](www.shields.io) if you'd like to add some badges to your README.
+
+- If you'd like to really dive deep, [here](https://blog.angular.io/how-we-use-angular-at-the-gdf-cd17807a9bd2) is an article from the Angular Blog on building an `update` schematic to automatically fix breaking changes when you make them.
+
+
 
 
 
