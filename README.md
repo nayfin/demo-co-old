@@ -1,5 +1,5 @@
 # Publishing Angular Libraries with Nx
-How to build a group of publishable libraries all all namespaced under an NPM organization.
+How to build a group of interdependent publishable libraries all all namespaced under an NPM organization.
 ## https://github.com/nayfin/demo-co
 
 ## What is Nx?
@@ -32,6 +32,14 @@ Libraries should be well organized and offer specific set of solutions (form fie
 
 Whenever you want access to the code you're writing outside the context you're writing it in (i.e. CLI project or Nx workspace).
 
+## When should I use an Nx Workspace over something like @ngneat/lib
+
+There are two main reasons to choose a workspace over a CLI generated library system:
+- You are using the monorepo to organize projects and libraries and would also like to publish some of those libraries
+- You are building interdependent libraries and need to quickly how changes to one library effect the dependent libraries
+
+If you are only wanting to publish a single library, or multiple stand-alone libraries you should check out [@ngneat/lib](https://github.com/ngneat/lib). In addition to generating the publishable library, it generates templates for CODE_OF_CONDUCT.md, CONTRIBUTING.md, ISSUE_TEMPLATE.md, LICENSE.md, PULL_REQUEST_TEMPLATE.md, README.md. It also generates some scripts to help automate release.
+
 ## Where?
 
 For our purposes, we are deploying to NPM as a public package, but you can easily follow similar steps to deploy to other public or private registries. Consult their docs for information on setup and publishing.
@@ -50,7 +58,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 - Decide on a name for your workspace/organization. It's a good idea to make this short. It can be something non-descriptive (@mango) if you want to have disparate libraries, or something descriptive (@ngstate) if you want to have a group of related libraries.
 
-- Create an NPM Organization [here](https://www.npmjs.com/org/create). This will align with your Nx workspace name name allowing you to "scope" your libraries to one namespace. Do this before creating workspace to ensure that the organization name you want is available
+- Create an NPM Organization [here](https://www.npmjs.com/org/create). This will align with your Nx workspace name name allowing you to "scope" your libraries to one namespace. Do this before creating workspace to ensure that the organization name you want is available.
 
 ### 2. Install Dependencies
 
@@ -58,11 +66,11 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 
 ### 3. Generate Nx Workspace
-  Use the npm organization from above as the namespace
+  Use the npm organization from above as the namespace.
 
-  `npx create-nx-workspace <your-namespace-name>`
+  `npx create-nx-workspace <your-namespace>`
 
-  Follow prompts
+  Follow prompts:
   - Pick the type of project (angular or angular-jest)
   - Pick style extension (scss is great!)
   - Name default app (`documentation` is usually a good bet)
@@ -102,6 +110,8 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 ## 6. Build Release Script
   You published the library, awesome! But running all those commands manually was kind of gross.
+
+  Luckily, there are tools that can help. We're going to use
 
   Wouldn't it be great if we could run a script that would:
   - prompts user to input which package is being released
