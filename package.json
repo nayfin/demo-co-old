@@ -41,7 +41,7 @@
     "@angular/platform-browser": "^8.2.0",
     "@angular/platform-browser-dynamic": "^8.2.0",
     "@angular/router": "^8.2.0",
-    "@nrwl/angular": "8.11.0",
+    "@nrwl/angular": "8.12.1",
     "@tft/core": "^8.1.0",
     "@tft/ui-imports": "^8.0.0",
     "core-js": "^2.5.4",
@@ -50,9 +50,9 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-ng-packagr": "~0.803.14",
-    "@angular/cli": "8.3.24",
-    "@nrwl/workspace": "8.11.0",
+    "@angular-devkit/build-ng-packagr": "0.803.23",
+    "@angular/cli": "8.3.23",
+    "@nrwl/workspace": "8.12.1",
     "@types/node": "~8.9.4",
     "dotenv": "6.2.0",
     "ng-packagr": "^5.4.0",
@@ -64,14 +64,14 @@
     "prettier": "1.18.2",
     "@angular/compiler-cli": "^8.2.0",
     "@angular/language-service": "^8.2.0",
-    "@angular-devkit/build-angular": "^0.803.14",
+    "@angular-devkit/build-angular": "0.803.23",
     "codelyzer": "~5.0.1",
     "jest-preset-angular": "7.0.0",
-    "@nrwl/jest": "8.11.0",
+    "@nrwl/jest": "8.12.1",
     "jest": "24.1.0",
     "@types/jest": "24.0.9",
     "ts-jest": "24.0.0",
-    "cypress": "3.6.1",
-    "@nrwl/cypress": "8.11.0"
+    "cypress": "^3.8.2",
+    "@nrwl/cypress": "8.12.1"
   }
 }

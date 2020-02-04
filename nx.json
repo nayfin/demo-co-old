@@ -12,7 +12,8 @@
   },
   "projects": {
     "demo-co-docs-e2e": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["demo-co-docs"]
     },
     "demo-co-docs": {
       "tags": []

@@ -25,9 +25,7 @@
               "apps/demo-co-docs/src/favicon.ico",
               "apps/demo-co-docs/src/assets"
             ],
-            "styles": [
-              "apps/demo-co-docs/src/styles.scss"
-            ],
+            "styles": ["apps/demo-co-docs/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -86,10 +84,7 @@
               "apps/demo-co-docs/tsconfig.app.json",
               "apps/demo-co-docs/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo-co-docs/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/demo-co-docs/**"]
           }
         },
         "test": {
@@ -123,13 +118,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/demo-co-docs-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/demo-co-docs-e2e/**"
-            ]
+            "tsConfig": ["apps/demo-co-docs-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/demo-co-docs-e2e/**"]
           }
         }
       }
@@ -141,7 +131,7 @@
       "prefix": "dco",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "libs/form-fields/tsconfig.lib.json",
             "project": "libs/form-fields/ng-package.json"
@@ -154,10 +144,7 @@
               "libs/form-fields/tsconfig.lib.json",
               "libs/form-fields/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/form-fields/**"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/form-fields/**"]
           }
         },
         "test": {
