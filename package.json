@@ -26,7 +26,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "release": "bash ./scripts/release.sh"
+    "release": "bash ./scripts/release.sh",
+    "commit": "git-cz"
   },
   "private": true,
   "dependencies": {
@@ -50,28 +51,38 @@
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "0.803.23",
     "@angular-devkit/build-ng-packagr": "0.803.23",
     "@angular/cli": "8.3.23",
+    "@angular/compiler-cli": "^8.2.0",
+    "@angular/language-service": "^8.2.0",
+    "@commitlint/cli": "8.1.0",
+    "@commitlint/config-angular": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@nrwl/cypress": "8.12.1",
+    "@nrwl/jest": "8.12.1",
     "@nrwl/workspace": "8.12.1",
+    "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
+    "codelyzer": "~5.0.1",
+    "cypress": "^3.8.2",
+    "cz-conventional-changelog": "^3.1.0",
     "dotenv": "6.2.0",
+    "eslint": "6.1.0",
+    "git-cz": "^3.2.1",
+    "jest": "24.1.0",
+    "jest-preset-angular": "7.0.0",
     "ng-packagr": "^5.4.0",
+    "prettier": "1.18.2",
+    "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",
     "tslint": "~5.11.0",
-    "eslint": "6.1.0",
-    "typescript": "~3.5.3",
-    "prettier": "1.18.2",
-    "@angular/compiler-cli": "^8.2.0",
-    "@angular/language-service": "^8.2.0",
-    "@angular-devkit/build-angular": "0.803.23",
-    "codelyzer": "~5.0.1",
-    "jest-preset-angular": "7.0.0",
-    "@nrwl/jest": "8.12.1",
-    "jest": "24.1.0",
-    "@types/jest": "24.0.9",
-    "ts-jest": "24.0.0",
-    "cypress": "^3.8.2",
-    "@nrwl/cypress": "8.12.1"
+    "typescript": "~3.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

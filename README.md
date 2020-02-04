@@ -108,7 +108,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
   - Update your library's `README.md` file, this will be displayed in on it's npm page. It should help consuming users get started using your package. [Here's](https://medium.com/hackernoon/a-crash-course-on-writing-a-better-readme-d796d1f6b352) a good article on Medium to get you started
   - If your library consumes any packages (e.g. @angular/material, @angular/forms), be sure to add those packages to the `peerDependencies` in its `package.json` file.
 
-## 6. Build Release Script
+## 6. Automated Release
   You published the library, awesome! But running all those commands manually was kind of gross.
 
   Luckily, there are tools that can help. We're going to use
@@ -135,6 +135,17 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
   There are a lot of ways to do this (npm script chaining, bash, nps). Find a way that works for you, but try to avoid a long manual process. It will be cumbersome and lead to mistakes.
 
   You can also checkout implementing a CI/CD pipeline with Travis [here](https://medium.com/@alfredo.perez.q/publish-angular-library-documentation-created-with-nx-using-travisci-and-github-pages-27854598239c).
+
+## 6. Automated Release (v2)
+
+  Scripts are good, but what if we had a system where by adding a little detail to our commits we were able to automate semantic releases and generate changelogs. We should probably run a build too and only release passing build, then push to github.
+
+  - Let's start with the commits, by installing `commitizen` and `commitlint`
+
+  `npm i -D @commitlint/cli @commitlint/config-angular @commitlint/config-conventional git-cz`
+
+
+
 
 ## 7. Development Testbed as Interactive Examples
 
