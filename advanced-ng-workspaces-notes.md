@@ -1,4 +1,8 @@
 # Nx Workspace Course Notes
+# Getting Started
+
+-
+ **NOTE:** Picking project type `angular` or `angular-nest` will create an 'Angular CLI Workspace' that create an `angular.json` file to configure the workspace's `libs` and `apps`. Other project types (blank, react, etc..) create an `nx.json` file to configure its `libs` and `apps`.
 
 # Shared Assets Library and nx.json
 
@@ -138,7 +142,7 @@ This helps to identify possible conflicts as early as possible, helps everyone h
 
 # Builders
 
-You can find a list of default tasks (build, serve, lint, extract-i18n, test) for each project in the angular.json or workspace.json, under the `architect` field. Each tasks takes a `builder` and configuration `options`. To run these tasks you run `nx run <project-name>:<task-name>` or use `nx affected --target=<task-name>` to run a task for all affected projects.
+You can find a list of default tasks (build, serve, lint, extract-i18n, test) for each project in the angular.json or workspace.json (depending on which workspace you selected), under the `architect` field. Each tasks takes a `builder` and configuration `options`. To run these tasks you run `nx run <project-name>:<task-name>` or use `nx affected --target=<task-name>` to run a task for all affected projects.
 
 ## setup first builder
 We'll create a `doc` task that will use `compodoc` to build documentation for the project.

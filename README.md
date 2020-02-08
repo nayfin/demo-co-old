@@ -69,11 +69,14 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
   Use the npm organization from above as the namespace.
 
   `npx create-nx-workspace <your-namespace>`
+  npx create-nx-workspace test-cli
 
   Follow prompts:
-  - Pick the type of project (angular or angular-jest)
+  - Pick the type of project (angular or angular-nest)
   - Pick style extension (scss is great!)
-  - Name default app (`documentation` is usually a good bet)
+  - Name default app (`examples` is usually a good bet)
+
+  **NOTE:** Picking project type `angular` or `angular-nest` will create an 'Angular CLI Workspace' that create an `angular.json` file to configure the workspace's `libs` and `apps`. Other project types (blank, react, etc..) create an `nx.json` file to configure its `libs` and `apps`.
 
 ### 4. Create Library
   Each library should be focused on one feature (e.g. form-fields, state-management) and named appropriately.
