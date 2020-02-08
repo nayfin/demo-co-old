@@ -20,7 +20,7 @@
             "main": "apps/demo-co-docs/src/main.ts",
             "polyfills": "apps/demo-co-docs/src/polyfills.ts",
             "tsConfig": "apps/demo-co-docs/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/demo-co-docs/src/favicon.ico",
               "apps/demo-co-docs/src/assets"
@@ -41,7 +41,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,

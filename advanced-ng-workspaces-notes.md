@@ -136,6 +136,16 @@ This helps to identify possible conflicts as early as possible, helps everyone h
 
 ## Static Files
 
-# Builder
+# Builders
+
+You can find a list of default tasks (build, serve, lint, extract-i18n, test) for each project in the angular.json or workspace.json, under the `architect` field. Each tasks takes a `builder` and configuration `options`. To run these tasks you run `nx run <project-name>:<task-name>` or use `nx affected --target=<task-name>` to run a task for all affected projects.
+
+## setup first builder
+We'll create a `doc` task that will use `compodoc` to build documentation for the project.
+
+- install compodoc as a devDependency
+  `npm i -D compodoc`
+
+-
 
 ##
