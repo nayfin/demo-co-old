@@ -154,8 +154,15 @@
             "setupFile": "libs/form-fields/src/test-setup.ts"
           }
         },
-        "docs": {
-
+        "doc": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx compodoc -p libs/form-fields/tsconfig.json -d libs/form-fields/documentation/"
+              }
+            ]
+          }
         }
       },
       "schematics": {
