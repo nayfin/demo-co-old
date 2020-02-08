@@ -250,12 +250,14 @@
 <p>  <code>npm install -g @angular/cli</code></p>
 <h3 id="3-generate-nx-workspace">3. Generate Nx Workspace</h3>
 <p>  Use the npm organization from above as the namespace.</p>
-<p>  <code>npx create-nx-workspace &lt;your-namespace&gt;</code></p>
+<p>  <code>npx create-nx-workspace &lt;your-namespace&gt;</code><br>  npx create-nx-workspace test-cli</p>
 <p>  Follow prompts:</p>
 <ul>
-<li>Pick the type of project (angular or angular-jest)</li>
+<li>Pick the type of project (angular or angular-nest)</li>
 <li>Pick style extension (scss is great!)</li>
-<li>Name default app (<code>documentation</code> is usually a good bet)</li>
+<li><p>Name default app (<code>examples</code> is usually a good bet)</p>
+<p><strong>NOTE:</strong> Picking project type <code>angular</code> or <code>angular-nest</code> will create an &#39;Angular CLI Workspace&#39; that create an <code>angular.json</code> file to configure the workspace&#39;s <code>libs</code> and <code>apps</code>. Other project types (blank, react, etc..) create an <code>nx.json</code> file to configure its <code>libs</code> and <code>apps</code>.</p>
+</li>
 </ul>
 <h3 id="4-create-library">4. Create Library</h3>
 <p>  Each library should be focused on one feature (e.g. form-fields, state-management) and named appropriately.</p>

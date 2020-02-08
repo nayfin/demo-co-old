@@ -1,21 +1,33 @@
 # Nx Workspace Course Notes
 # Getting Started
 
--
- **NOTE:** Picking project type `angular` or `angular-nest` will create an 'Angular CLI Workspace' that create an `angular.json` file to configure the workspace's `libs` and `apps`. Other project types (blank, react, etc..) create an `nx.json` file to configure its `libs` and `apps`.
+ `npx create-nx-workspace <your-namespace>`
+  npx create-nx-workspace test-cli
+
+  Follow prompts:
+  - Pick the type of project (angular or angular-nest)
+  - Pick style extension (scss is great!)
+  - Name default app (`examples` is usually a good bet)
+
+  **NOTE:** Picking project type `angular` or `angular-nest` will create an 'Angular CLI Workspace' that create an `angular.json` file to configure the workspace's `libs` and `apps`. Other workspace types (blank, react, etc..) use an `nx.json` file to configure its `libs` and `apps`.
+
+<img width="800" src="./gifs/create-nx-workspace.gif">
 
 # Shared Assets Library and nx.json
 
   All the names below can obviously be changed, but these are good naming conventions to use for the task.
   - create shared assets library
 
-    `nx g @nwrl/workspace:lib assets --directory=shared`
+    `nx generate @nwrl/workspace:lib assets --directory=shared`
 
     nx will add this library to a shared folder or create one if it doesn't exist
 
-  - move shared files into it (let's say they're png images)
+    **NOTE:** Notice the use of `@nwrl/workspace:lib` in the generate command. This will create a more generic library, which is good for sharing file assets like this. If you wanted to generate an Angular library you use `@nwrl/angular:lib`.
+
+  - move files you wish to share into `libs/shared/assets/src/lib` (let's say they're png images)
   - update the libraries that need the shared assets
   - update the assets array under the build options for the consuming app in `angular.json`
+
   ```json
     "architect": {
       "build": {
@@ -118,7 +130,7 @@
 
 This helps to identify possible conflicts as early as possible, helps everyone have the most up to date code
 
-### In practice
+### New branching strategy would be something like this
 - cut feature branch from master
   `git checkout -b feature-a`
 - make changes, committing them to feature branch
@@ -132,26 +144,79 @@ This helps to identify possible conflicts as early as possible, helps everyone h
   `git push`
 - submit PR to master
 
+### Cut release from master
+
+- `git checkout -b rel@1.*.*`
+- hook this into test env pipeline somehow (watch for specific branch name patterns(e.g. 'rel@*.*.*') and run pipeline on matching branches)
+- run manual and automated tests
+- bugs are submitted to devs
+- fixes are made against master then cherrypicked into release branch
+- once stable release branch gets
+
 ### Safely keeping features that aren't ready for production on master
 - add `experimental` tag to libraries that aren't ready for production, then use the constraints field to keep other libraries from depending on them
 - use featureFlags to keep unreleased content out of production, following Netanel Basal's [guide](https://netbasal.com/the-ultimate-guide-to-implementing-feature-flags-in-angular-applications-d4ae1fd33684)
 
 # Schematics
 
-## Static Files
+## COMING SOON!!!
+
 
 # Builders
 
-You can find a list of default tasks (build, serve, lint, extract-i18n, test) for each project in the angular.json or workspace.json (depending on which workspace you selected), under the `architect` field. Each tasks takes a `builder` and configuration `options`. To run these tasks you run `nx run <project-name>:<task-name>` or use `nx affected --target=<task-name>` to run a task for all affected projects.
+You can find a list of default tasks (build, serve, lint, extract-i18n, test) for each project in the `angular.json` or `workspace.json` (depending on which workspace type you generated), under the `architect` field.
 
-## setup first builder
-We'll create a `doc` task that will use `compodoc` to build documentation for the project.
+Each tasks takes a `builder` and configuration `options`. To run these tasks you run:
 
+  `nx run <project-name>:<task-name>`
+
+To run a task for all affected projects use:
+
+  `nx affected --target=<task-name>`
+
+**NOTES:** I had to install `@nrwl/cli` globally to get the `nx` command to run as expected:
+
+  `npm i -g @nrwl/cli`
+
+## Create a "doc" task
+
+Let's create a `doc` task that will use [compodoc](https://compodoc.app/) to build documentation for the project. Compodoc is designed to work with an Angular CLI generated workspace but be configured to work well in an Nx workspace as well.
+
+  Here's an example of what the compodoc command would look like if we want generate docs for a `form-fields` library in our workspace:
+
+  `npx compodoc -p libs/form-fields/tsconfig.json -d libs/form-fields/documentation/`
+
+Notice we us the `-d` flag to pass in an output path. If we don't pass in an `output` option, the docs will be generated in a `documentation` directory at the root of the workspace.
+
+### Steps:
 - install compodoc as a devDependency
+
   `npm i -D compodoc`
 
-- `npx compodoc -p libs/form-fields/tsconfig.json -d libs/form-fields/documentation/`
+- add `doc` task to project in `angular.json` (`workspace.json` if you generated an nx workspace).
+  ```json
+  "<project-name>": {
+        ...
+        "architect": {
+          ...
+          "doc": {
+            "builder": "@nrwl/workspace:run-commands",
+            "options": {
+              "commands": [
+                {
+                  "command": "npx compodoc -p <'libs' | 'apps'>/<project-name>/tsconfig.json -d <'libs' | 'apps'>/<project-name>/documentation/"
+                }
+              ]
+            }
+          }
+        },
+      ...
+    }
+  ```
+- run `nx run <project-name>:doc` to run task
+- add task to other projects
+- run `nx affect --target=doc` to run `doc` task on all affected projects
 
-Scripts can be used to accomplish all of this, except that by implementing this way we are able to leverage the `nx affected` command, to run task on all affected projects.
+Scripts can be used to accomplish all of this, but by implementing it this way we are able to leverage the `nx affected` command. This allows us to run specific task on all affected projects.
 
 ##
