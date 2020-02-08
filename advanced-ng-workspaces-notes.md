@@ -146,6 +146,8 @@ We'll create a `doc` task that will use `compodoc` to build documentation for th
 - install compodoc as a devDependency
   `npm i -D compodoc`
 
--
+- `npx compodoc -p libs/form-fields/tsconfig.json -d libs/form-fields/documentation/`
+
+Scripts can be used to accomplish all of this, except that by implementing this way we are able to leverage the `nx affected` command, to run task on all affected projects.
 
 ##

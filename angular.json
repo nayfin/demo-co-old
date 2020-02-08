@@ -153,6 +153,9 @@
             "tsConfig": "libs/form-fields/tsconfig.spec.json",
             "setupFile": "libs/form-fields/src/test-setup.ts"
           }
+        },
+        "docs": {
+
         }
       },
       "schematics": {
