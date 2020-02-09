@@ -117,7 +117,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
   2. Add star-border directive to library
 
-    `nx g directive star-border --project=borders`
+    `nx g c star-border --project=borders --export`
 
 ## 6. Automated Release (v1)
   You published the library, awesome! But running all those commands manually was kind of gross. There are tools that can help, but for now there's a release script, `release.sh`, in the `scripts` folder.
