@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@demo-co/form-fields": ["libs/form-fields/src/index.ts"]
+      "@demo-co/form-fields": ["libs/form-fields/src/index.ts"],
+      "@demo-co/borders": ["libs/borders/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

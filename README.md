@@ -30,7 +30,7 @@ Publishing libraries like this allows you to:
 
 Nx makes it really easy to create publishable interdependent libraries, this helps us to offer  smaller libraries that focus on a specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies.
 
- Additionally, can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.
+ Additionally, we can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.
 
 ## When should I create a publishable library?
 
@@ -109,6 +109,15 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 ### You published a library!!
 ![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
+
+## 6. Publish another library as a dependency
+  1. Create library of borders
+
+    `nx g @nrwl/angular:lib borders --publishable`
+
+  2. Add star-border directive to library
+
+    `nx g directive star-border --project=borders`
 
 ## 6. Automated Release (v1)
   You published the library, awesome! But running all those commands manually was kind of gross. There are tools that can help, but for now there's a release script, `release.sh`, in the `scripts` folder.

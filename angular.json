@@ -170,6 +170,44 @@
           "styleext": "scss"
         }
       }
+    },
+    "borders": {
+      "projectType": "library",
+      "root": "libs/borders",
+      "sourceRoot": "libs/borders/src",
+      "prefix": "demo-co",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "libs/borders/tsconfig.lib.json",
+            "project": "libs/borders/ng-package.json"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/borders/tsconfig.lib.json",
+              "libs/borders/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/borders/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/borders/jest.config.js",
+            "tsConfig": "libs/borders/tsconfig.spec.json",
+            "setupFile": "libs/borders/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
