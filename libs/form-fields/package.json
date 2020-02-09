@@ -3,6 +3,7 @@
   "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^8.2.11",
-    "@angular/core": "^8.2.11"
+    "@angular/core": "^8.2.11",
+    "@demo-co/borders": "^0.0.0"
   }
 }

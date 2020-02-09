@@ -115,11 +115,30 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
     `nx g @nrwl/angular:lib borders --publishable`
 
-  2. Add star-border directive to library
+  2. Add star-border component to library
 
     `nx g c star-border --project=borders --export`
 
-## 6. Automated Release (v1)
+  3. Import borders module in form-fields module
+  ```ts
+    ...
+    import { BordersModule } from '@demo-co/borders';
+
+    @NgModule({
+      imports: [
+        BordersModule
+        ...
+      ],
+  ```
+
+  4
+
+  Wrap input with `star-border` component
+
+
+
+
+## 7. Automated Release (v1)
   You published the library, awesome! But running all those commands manually was kind of gross. There are tools that can help, but for now there's a release script, `release.sh`, in the `scripts` folder.
   It automates release by:
   - prompting user to input which package is being released
