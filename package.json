@@ -27,7 +27,9 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "release": "bash ./scripts/release.sh",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "compodoc": "npx compodoc -p ./tsconfig.compodoc.json -s",
+    "compodoc:form-fields": "npx compodoc -p libs/form-fields/tsconfig.lib.json -d libs/form-fields/documentation/ -s"
   },
   "private": true,
   "dependencies": {
@@ -42,7 +44,7 @@
     "@angular/platform-browser": "^9.0.0",
     "@angular/platform-browser-dynamic": "^9.0.0",
     "@angular/router": "^9.0.0",
-    "@nrwl/angular": "8.12.2",
+    "@nrwl/angular": "^8.12.2",
     "@tft/core": "^8.1.1",
     "@tft/ui-imports": "^8.0.0",
     "core-js": "^3.6.4",

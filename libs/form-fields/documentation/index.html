@@ -219,7 +219,8 @@
 <li>show everyone (developers, companies, future employers) how great you are</li>
 </ul>
 <h2 id="why-use-nx-and-npm-organization-">Why use nx and npm organization?</h2>
-<p>Libraries should be well organized and offer specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies. Using Nx makes library publishing and deploying a trivial task and groups all libraries under a shared namespace.</p>
+<p>Nx makes it really easy to create publishable interdependent libraries, this helps us to offer  smaller libraries that focus on a specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies.</p>
+<p> Additionally, can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.</p>
 <h2 id="when-should-i-create-a-publishable-library-">When should I create a publishable library?</h2>
 <p>Whenever you want access to the code you&#39;re writing outside the context you&#39;re writing it in (i.e. CLI project or Nx workspace).</p>
 <h2 id="when-should-i-use-an-nx-workspace-over-something-like-ngneat-lib">When should I use an Nx Workspace over something like @ngneat/lib</h2>

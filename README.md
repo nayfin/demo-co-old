@@ -27,7 +27,10 @@ Publishing libraries like this allows you to:
   - show everyone (developers, companies, future employers) how great you are
 
 ## Why use nx and npm organization?
-Libraries should be well organized and offer specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies. Using Nx makes library publishing and deploying a trivial task and groups all libraries under a shared namespace.
+
+Nx makes it really easy to create publishable interdependent libraries, this helps us to offer  smaller libraries that focus on a specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies.
+
+ Additionally, can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.
 
 ## When should I create a publishable library?
 
