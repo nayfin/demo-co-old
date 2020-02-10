@@ -195,7 +195,14 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
       }
     }
     ```
+5. Use `dco-star-border` in `dco-input`
 
+    dco-input.component.html
+    ```html
+    <dco-star-border>
+      <input type="text">
+    </dco-star-border>
+    ```
 
 
 ## 7. Automated Release (v1)
