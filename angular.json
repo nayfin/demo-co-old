@@ -175,7 +175,7 @@
       "projectType": "library",
       "root": "libs/borders",
       "sourceRoot": "libs/borders/src",
-      "prefix": "demo-co",
+      "prefix": "dco",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
