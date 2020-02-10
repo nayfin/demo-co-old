@@ -111,16 +111,16 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 ![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
 
 ## 6. Publish another library as a dependency
-  1. Create library of borders
+1. Create library of borders
 
-    `nx g @nrwl/angular:lib borders --publishable`
+    `nx g @nrwl/angular:lib borders --publishable --prefix=dco`
 
-  2. Add star-border component to library
+2. Add star-border component to library
 
     `nx g c star-border --project=borders --export`
 
-  3. Import borders module in form-fields module
-  ```ts
+3. Import borders module in form-fields module
+    ```ts
     ...
     import { BordersModule } from '@demo-co/borders';
 
@@ -129,12 +129,72 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
         BordersModule
         ...
       ],
-  ```
+    ```
+4. Add details to star-border component
 
-  4
+    star-border.component.html
 
-  Wrap input with `star-border` component
+    ```html
+    <div class="star-border">
+      <ng-content>
+      </ng-content>
+    </div>
+    ```
+    some silly styles for star-border.component.scss
+    ```scss
+    $color: green;
 
+    :host {
+      margin: 50px 0;
+      position: relative;
+      display: block;
+      color: $color;
+      width: 0px;
+      height: 0px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid $color;
+      border-left: 100px solid transparent;
+      transform: rotate(35deg);
+    }
+    :host:before {
+      border-bottom: 80px solid $color;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: -45px;
+      left: -65px;
+      display: block;
+      content: '';
+      transform: rotate(-35deg);
+    }
+
+    :host:after {
+      position: absolute;
+      display: block;
+      color: $color;
+      top: 3px;
+      left: -105px;
+      width: 0px;
+      height: 0px;
+      border-right: 100px solid transparent;
+      border-bottom: 70px solid $color;
+      border-left: 100px solid transparent;
+      transform: rotate(-70deg);
+      content: '';
+    }
+    ::ng-deep {
+      .star-border > * {
+        width: 98px;
+        left: -61px;
+        top: 16px;
+        position: absolute;
+        transform: rotate(-35deg);
+        z-index: 40;
+      }
+    }
+    ```
 
 
 

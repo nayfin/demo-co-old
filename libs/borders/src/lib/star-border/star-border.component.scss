@@ -40,12 +40,13 @@ $color: green;
   transform: rotate(-70deg);
   content: '';
 }
-
-input {
-  width: 98px;
-  left: -61px;
-  top: 16px;
-  position: absolute;
-  transform: rotate(-35deg);
-  z-index: 40;
+::ng-deep {
+  .star-border > * {
+    width: 98px;
+    left: -61px;
+    top: 16px;
+    position: absolute;
+    transform: rotate(-35deg);
+    z-index: 40;
+  }
 }

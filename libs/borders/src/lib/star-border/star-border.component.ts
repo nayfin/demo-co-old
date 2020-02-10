@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'demo-co-star-border',
+  selector: 'dco-star-border',
   templateUrl: './star-border.component.html',
   styleUrls: ['./star-border.component.scss']
 })
