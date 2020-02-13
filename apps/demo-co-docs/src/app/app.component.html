@@ -2,7 +2,8 @@
   <tft-header
     role="header"
     (menuClicked)="sidenav.toggle()"
-    [subtitle]="'Library'">
+    [title]="'Demo Co'"
+    [subtitle]="subtitle$ | async">
   </tft-header>
 
   <mat-sidenav-container fxFlex aria-live="main content">

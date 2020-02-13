@@ -130,7 +130,7 @@
     export * from './input/input.ts';
   ```
 
-  *NOTE:* I upgraded to Angular 9 halfway through writing presentation, having to export components directly from the entry point wasn't required in Angular 8.
+  *NOTE:* I upgraded to Angular 9 halfway through writing this. Having to export components directly from the entry point wasn't required in Angular 8.
 
 11. Again: `nx build borders && npm run release`
   ```
@@ -141,7 +141,11 @@
   ```json
     "enableIvy": false,
   ```
+12. Cross fingers and run again:
 
+  `nx build borders && npm run release`
+
+  Hot damn! It worked!
 
 ## Automated Release (v2)
 
