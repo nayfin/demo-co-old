@@ -27,6 +27,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "release": "bash ./scripts/release.sh",
+    "publish:examples": "bash ./scripts/publish-examples.sh",
     "commit": "git-cz",
     "compodoc": "npx compodoc -p ./tsconfig.compodoc.json -s",
     "compodoc:form-fields": "npx compodoc -p libs/form-fields/tsconfig.lib.json -d libs/form-fields/documentation/ -s"
