@@ -114,7 +114,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 ### You published a library!!
 ![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
 
-## 7. Development Testbed as User Playground
+## 6. Development Testbed as User Playground
 
 
   One of the most important pieces of a good library, is really good documentation. If you plan the build and keep organized examples of the features as you build them out, then it's relatively easy to post your testbed as interactive documentation on [StackBlitz](https://stackblitz.com). By posting in to StackBlitz not only get usage examples, they get an interactive playground where they can adjust and customize the examples.

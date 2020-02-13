@@ -94,6 +94,54 @@
     </dco-star-border>
     ```
 
+6. Release `form-fields` again `npm run release` and follow prompts
+
+7. Receive error message
+    ```
+      Some of the library form-fields's dependencies have not been built yet. Please build these libraries before:
+      - borders
+    ```
+    Nx warns us that we have an unbuilt dependency and tells us how to fix!
+
+8. Build `borders` library and then run release scripts
+
+`nx build borders && npm run release`
+
+9. Another error...
+
+  ```
+  ERROR: libs/borders/src/lib/star-border/star-border.component.ts:8:14 - error NG3001: Unsupported private class StarBorderComponent. This class is visible to consumers via BordersModule -> StarBorderComponent, but is not exported from the top-level library entrypoint.
+  ```
+
+  This is telling us that we need to export our library's entry point so let's do that. Open the library's `index.ts` file and add:
+
+  ```ts
+    export * from './star-border/star-border.ts';
+  ```
+
+10. Run it again...
+  ```
+  ERROR: libs/form-fields/src/lib/input/input.component.ts:12:14 - error NG3001: Unsupported private class InputComponent. This class is visible to consumers via FormFieldsModule -> InputComponent, but is not exported from the top-level library entrypoint.
+  ```
+
+  Are you serious!!! Okay, we know what to do, just export input component from form-fields library's `index.ts`.
+
+  ```ts
+    export * from './input/input.ts';
+  ```
+
+  *NOTE:* I upgraded to Angular 9 halfway through writing presentation, having to export components directly from the entry point wasn't required in Angular 8.
+
+11. Again: `nx build borders && npm run release`
+  ```
+  node --eval "console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\n')" && exit
+  ```
+
+  Okay, published libraries aren't supposed to use Ivy yet, but in Angular 9, Ivy is on by default. So let's turn it off for both our libraries since we know we want to publish the `borders` library as well. In both of the library's `tsconfig.lib.json` files, under the `angularCompilerOptions` field add:
+  ```json
+    "enableIvy": false,
+  ```
+
 
 ## Automated Release (v2)
 
