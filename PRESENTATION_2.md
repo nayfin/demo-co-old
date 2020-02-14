@@ -147,6 +147,20 @@
 
   Hot damn! It worked!
 
+13. Now lets see what happens in demo-co-docs, our demo app that is using the packaged version of the library, when we try and update
+
+  - update the version in our `package.json` bumping it to the latest version and `npm i`
+  - new error!
+
+  ```
+    npm ERR! code E404
+    npm ERR! 404 Not Found - GET https://registry.npmjs.org/@demo-co%2fborders - Not found
+    npm ERR! 404
+    npm ERR! 404  '@demo-co/borders@0.0.1' is not in the npm registry.
+  ```
+
+
+
 ## Automated Release (v2)
 
   Scripts are good, but what if we had a system where, by adding a little detail to our commits, we can enable some pretty nice things:
