@@ -23,7 +23,7 @@
   export * from './star-border/star-border.ts';
   ```
 
-- Import borders module in form-fields module
+- Import borders module into `form-fields.module`
 
     ```ts
     ...
@@ -108,6 +108,13 @@
       <input type="text">
     </dco-star-border>
     ```
+- In the `form-field` library's `package.json` add the borders library to the `peerDependencies` so that the user knows that they have to install this as a dependency. We will publish it as a package soon.
+  ```json
+  "peerDependencies": {
+    ...
+    "@demo-co/borders": "^0.0.1"
+  }
+  ```
 
 - Release `form-fields` again `npm run release` and follow prompts
 

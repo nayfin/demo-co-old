@@ -13,7 +13,7 @@ fi
 
 # THIS LIST MUST BE UPDATEd WHEN NEW PUBLISHABLE LIBS ARE ADDED
 # TODO: There's probably a fancy way to automate this
-packages=(form-fields)
+packages=(form-fields borders)
 # prompt user to ask what package we are releasing
 PS3='What package are we releasing? (input number)'
 select package in "${packages[@]}"
