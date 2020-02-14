@@ -1,15 +1,30 @@
 # Part 2
 
 ## 6. Publish another library as a dependency
-1. Create library of borders
+- Create library of borders
 
     `nx g @nrwl/angular:lib borders --publishable --prefix=dco`
 
-2. Add star-border component to library
+- Disable Ivy in library's `tsconfig.lib.json`
 
-    `nx g c star-border --project=borders --export`
+  ```json
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+  ```
 
-3. Import borders module in form-fields module
+- Add star-border component to library
+
+  `nx g c star-border --project=borders --export`
+
+- Export component from `index.ts`
+
+  ```ts
+  export * from './star-border/star-border.ts';
+  ```
+
+- Import borders module in form-fields module
+
     ```ts
     ...
     import { BordersModule } from '@demo-co/borders';
@@ -20,7 +35,7 @@
         ...
       ],
     ```
-4. Add details to star-border component
+- Add details to star-border component
 
     star-border.component.html
 
@@ -85,7 +100,7 @@
       }
     }
     ```
-5. Use `dco-star-border` in `dco-input`
+- Use `dco-star-border` in `dco-input`
 
     dco-input.component.html
     ```html
@@ -94,60 +109,22 @@
     </dco-star-border>
     ```
 
-6. Release `form-fields` again `npm run release` and follow prompts
+- Release `form-fields` again `npm run release` and follow prompts
 
-7. Receive error message
+- Receive error message
     ```
       Some of the library form-fields's dependencies have not been built yet. Please build these libraries before:
       - borders
     ```
     Nx warns us that we have an unbuilt dependency and tells us how to fix!
 
-8. Build `borders` library and then run release scripts
-
-`nx build borders && npm run release`
-
-9. Another error...
-
-  ```
-  ERROR: libs/borders/src/lib/star-border/star-border.component.ts:8:14 - error NG3001: Unsupported private class StarBorderComponent. This class is visible to consumers via BordersModule -> StarBorderComponent, but is not exported from the top-level library entrypoint.
-  ```
-
-  This is telling us that we need to export our library's entry point so let's do that. Open the library's `index.ts` file and add:
-
-  ```ts
-    export * from './star-border/star-border.ts';
-  ```
-
-10. Run it again...
-  ```
-  ERROR: libs/form-fields/src/lib/input/input.component.ts:12:14 - error NG3001: Unsupported private class InputComponent. This class is visible to consumers via FormFieldsModule -> InputComponent, but is not exported from the top-level library entrypoint.
-  ```
-
-  Are you serious!!! Okay, we know what to do, just export input component from form-fields library's `index.ts`.
-
-  ```ts
-    export * from './input/input.ts';
-  ```
-
-  *NOTE:* I upgraded to Angular 9 halfway through writing this. Having to export components directly from the entry point wasn't required in Angular 8.
-
-11. Again: `nx build borders && npm run release`
-  ```
-  node --eval "console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\n')" && exit
-  ```
-
-  Okay, published libraries aren't supposed to use Ivy yet, but in Angular 9, Ivy is on by default. So let's turn it off for both our libraries since we know we want to publish the `borders` library as well. In both of the library's `tsconfig.lib.json` files, under the `angularCompilerOptions` field add:
-  ```json
-    "enableIvy": false,
-  ```
-12. Cross fingers and run again:
+- Build `borders` library and then run release scripts
 
   `nx build borders && npm run release`
 
   Hot damn! It worked!
 
-13. Now lets see what happens in demo-co-docs, our demo app that is using the packaged version of the library, when we try and update
+- Now lets see what happens in demo-co-docs, our demo app that is using the packaged version of the library, when we try and update
 
   - update the version in our `package.json` bumping it to the latest version and `npm i`
   - new error!

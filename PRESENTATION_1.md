@@ -70,7 +70,6 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 ### 3. Generate Nx Workspace
 
-
   Use the npm organization from above as the namespace.
 
   `npx create-nx-workspace <your-namespace>`
@@ -85,16 +84,38 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
   <img width="500" src="./gifs/create-nx-workspace.gif">
 
-### 4. Create Library
+### 4. Create a Library With a Component
   Each library should be focused on one feature (e.g. form-fields, state-management) and named appropriately.
+
+- Generate library
 
   `ng generate @nrwl/angular:lib <your-library-name> --publishable`
 
   Don't forget the `--publishable` flag! It tells nx to do all the extra bits to make publishing easy.
 
-- Generate First Library Component
+- Disable Ivy in library's `tsconfig.lib.json`
+
+  ```json
+  "angularCompilerOptions": {
+    "enableIvy": false
+  }
+  ```
+
+  If you forget to disable Ivy you'll see this error:
+
+  ```
+  node --eval "console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\n')" && exit
+  ```
+
+- Generate the library's first component
 
   `ng generate component --project=<your-library-name>`
+
+- Export the component from the libraries `index.ts`
+
+  `export * from './input/input.component.ts`
+
+  *NOTE:* This is not actually required, but it will be in the future after we enable Ivy for our library.
 
 - Make it do something!
 
@@ -115,7 +136,6 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 ![jake prismo 5](https://media.giphy.com/media/V2xbsCrxcLQSQ/giphy.gif)
 
 ## 6. Development Testbed as User Playground
-
 
   One of the most important pieces of a good library, is really good documentation. If you plan the build and keep organized examples of the features as you build them out, then it's relatively easy to post your testbed as interactive documentation on [StackBlitz](https://stackblitz.com). By posting in to StackBlitz not only get usage examples, they get an interactive playground where they can adjust and customize the examples.
 
