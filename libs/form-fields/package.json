@@ -1,9 +1,9 @@
 {
   "name": "@demo-co/form-fields",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "peerDependencies": {
     "@angular/common": "^8.2.11",
     "@angular/core": "^8.2.11",
-    "@demo-co/borders": "^0.0.0"
+    "@demo-co/borders": "^0.1.0"
   }
 }

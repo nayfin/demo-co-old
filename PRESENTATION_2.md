@@ -112,10 +112,14 @@
   ```json
   "peerDependencies": {
     ...
-    "@demo-co/borders": "^0.0.1"
+    "@demo-co/borders": "^0.1.0"
   }
   ```
 
+- Release `border` library as a package on NPM. If you your using `release.sh` as a release script, simply add our new library name to our list of library on line 16 of the script
+  ```
+  packages=(form-fields borders)
+  ```
 - Release `form-fields` again `npm run release` and follow prompts
 
 - Receive error message
