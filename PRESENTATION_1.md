@@ -1,5 +1,7 @@
 # Publishing Angular Libraries with Nx
 How to build a group of interdependent publishable libraries all all namespaced under an NPM organization.
+
+Find PRESENTATION_1.md at
 ## https://github.com/nayfin/demo-co
 
 ## What is Nx?
@@ -30,7 +32,9 @@ Publishing libraries like this allows you to:
 
 Nx makes it really easy to create publishable interdependent libraries, this helps us to offer  smaller libraries that focus on a specific set of solutions (form fields, state management, ui features, layout). This keeps our libraries lightweight and prevents end-developers from having to download unused dependencies.
 
- Additionally, we can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.
+If using as a monorepo, we can make changes to a library and easily run tests on all consuming apps. This helps ensure we don't introduce breaking changes or that we account for the changes everywhere that they break.
+
+Additionally, we can even have internal apps that depend directly on the libraries while other apps depend on a package from a registry.
 
 ## When should I create a publishable library?
 
@@ -38,7 +42,7 @@ Whenever you want access to the code you're writing outside the context you're w
 
 ## When should I use an Nx Workspace over something like @ngneat/lib
 
-There are two main reasons to choose a workspace over a CLI generated library system:
+There are two main reasons to choose a workspace over an Angular CLI generated library system:
 - You are using the monorepo to organize projects and libraries and would also like to publish some of those libraries
 - You are building interdependent libraries and need to quickly how changes to one library effect the dependent libraries
 
@@ -52,7 +56,9 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 ![thinking steven](https://media.giphy.com/media/2xF8ihOYNJCG0iAXNU/giphy.gif)
 
 ### 1. Create NPM Organization
-- Register for an NPM account if you don't already have one [here](https://www.npmjs.com/signup)
+- Register for an NPM account if you don't already have one
+
+  https://www.npmjs.com/signup
 
 - Sign in through command line
 
@@ -62,7 +68,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 - Decide on a name for your workspace/organization. It's a good idea to make this short. It can be something non-descriptive (@mango) if you want to have disparate libraries, or something descriptive (@ngstate) if you want to have a group of related libraries.
 
-- Create an NPM Organization [here](https://www.npmjs.com/org/create). This will align with your Nx workspace name name allowing you to "scope" your libraries to one namespace. Do this before creating workspace to ensure that the organization name you want is available.
+- Create an NPM Organization at www.npmjs.com/org/create. This will align with your Nx workspace name name allowing you to "scope" your libraries to one namespace. Do this before creating workspace to ensure that the organization name you want is available.
 
 ### 2. Install Dependencies
 

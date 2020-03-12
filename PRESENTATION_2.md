@@ -1,6 +1,6 @@
 # Part 2
 
-## 6. Publish another library as a dependency
+## 1. Publish another library as a dependency
 - Create library of borders
 
     `nx g @nrwl/angular:lib borders --publishable --prefix=dco`
@@ -108,6 +108,8 @@
       <input type="text">
     </dco-star-border>
     ```
+
+# TODO: MAYBE I DON'T NEED THIS. Learn more about peerDependencies
 - In the `form-field` library's `package.json` add the borders library to the `peerDependencies` so that the user knows that they have to install this as a dependency. We will publish it as a package soon.
   ```json
   "peerDependencies": {
@@ -146,8 +148,6 @@
     npm ERR! 404
     npm ERR! 404  '@demo-co/borders@0.0.1' is not in the npm registry.
   ```
-
-
 
 ## Automated Release (v2)
 
