@@ -40,7 +40,10 @@ Additionally, we can even have internal apps that depend directly on the librari
 
 Whenever you want access to the code you're writing outside the context you're writing it in (i.e. CLI project or Nx workspace).
 
+
 ## When should I use an Nx Workspace over something like @ngneat/lib
+
+<img src="https://avatars3.githubusercontent.com/u/53073952?s=200&v=4">
 
 There are two main reasons to choose a workspace over an Angular CLI generated library system:
 - You are using the monorepo to organize projects and libraries and would also like to publish some of those libraries
@@ -121,7 +124,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 
 - Generate the library's first component
 
-  `ng generate component --project=<your-library-name>`
+  `ng generate component --project=<your-library-name> --export=true`
 
 - Export the component from the libraries `index.ts`
 
@@ -139,7 +142,7 @@ For our purposes, we are deploying to NPM as a public package, but you can easil
 - set initial version in package.json
 - build library
 
-  `ng build <library-name>`
+  `ng build <library-name> --prod`
 - publish it!
 
   `cd dist/libs/<library-name> && npm pack && npm publish --access public && cd ../../../`
